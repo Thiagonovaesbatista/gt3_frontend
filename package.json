@@ -1,0 +1,41 @@
+{
+  "name": "react-neutrino-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production",
+    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@seniorsistemas/senior-platform-data": "^3.1.0",
+    "axios": "^0.20.0",
+    "classnames": "^2.2.6",
+    "primeflex": "^2.0.0",
+    "primeicons": "^4.0.0",
+    "primereact": "^5.0.0-rc.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^6.8.0",
+    "react-hot-loader": "^4.12.21",
+    "react-router-dom": "^5.2.0",
+    "react-transition-group": "^4.4.1"
+  },
+  "devDependencies": {
+    "@neutrinojs/airbnb": "^9.4.0",
+    "@neutrinojs/react": "^9.4.0",
+    "eslint": "^7.8.1",
+    "neutrino": "^9.4.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
