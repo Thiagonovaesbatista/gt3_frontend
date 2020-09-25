@@ -40,7 +40,7 @@ function getElement(
     );
   } if (!dataTable || dataTable.length === 0) {
     return (
-      <EmptyState />
+      <EmptyState description="Não há nenhum tipo de documento cadastrado" />
     );
   }
   const actionBodyTemplate = (documentType) => (

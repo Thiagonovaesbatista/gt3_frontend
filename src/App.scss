@@ -114,3 +114,22 @@ body {
 .sidebar-footer .p-message {
   margin-bottom: 1rem;
 }
+
+$spinner-color:#555;
+
+@keyframes p-progress-spinner-color {
+  100%,
+  0% {
+      stroke: $spinner-color;
+  }
+  40% {
+      stroke: $spinner-color;
+  }
+  66% {
+      stroke: $spinner-color;
+  }
+  80%,
+  90% {
+      stroke: $spinner-color;
+  }
+}

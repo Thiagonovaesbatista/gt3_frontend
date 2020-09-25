@@ -45,7 +45,7 @@ function CompanyInfoSidebar({ visible, onHide, company }) {
         </>
       );
     }
-    return (<EmptyState />);
+    return (<EmptyState description="Não há valores a serem mostrados" />);
   };
   return (
     <Sidebar header="Informações da empresa" visible={visible} onHide={onHide} position="right">

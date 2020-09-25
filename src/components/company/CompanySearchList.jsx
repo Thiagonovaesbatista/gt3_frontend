@@ -45,7 +45,7 @@ function getElement(
     );
   } if (!data || data.length === 0) {
     return (
-      <EmptyState />
+      <EmptyState description="Não há nenhuma empresa cadastrada" />
     );
   }
   const actionBodyTemplate = (company) => (

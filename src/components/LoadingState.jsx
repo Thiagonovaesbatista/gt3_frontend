@@ -1,9 +1,11 @@
 import React from 'react';
+import { ProgressSpinner } from 'primereact/progressspinner';
+import './LoadingState.scss';
 
 function LoadingState() {
   return (
-    <div>
-      <p>LOADING_STATE</p>
+    <div className="container-loading-state">
+      <ProgressSpinner className="spinner" />
     </div>
   );
 }

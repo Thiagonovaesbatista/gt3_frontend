@@ -43,7 +43,7 @@ function getElement(
     );
   } if (!data || data.length === 0) {
     return (
-      <EmptyState />
+      <EmptyState description="Não há nenhum contrato cadastrado" />
     );
   }
   const actionBodyTemplate = (contract) => (

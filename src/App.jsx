@@ -6,6 +6,7 @@ import Company from './pages/Company';
 import DocumentType from './pages/DocumentType';
 import Contract from './pages/Contract';
 import Home from './pages/Home';
+import './helpers/interceptor';
 
 function App() {
   return (

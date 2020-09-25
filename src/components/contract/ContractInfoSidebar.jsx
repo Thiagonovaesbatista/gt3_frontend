@@ -58,7 +58,7 @@ function ContractInfoSidebar({ visible, onHide, contract }) {
         </>
       );
     }
-    return (<EmptyState />);
+    return (<EmptyState description="Não há valores a serem mostrados" />);
   };
   return (
     <Sidebar position="right" visible={visible} onHide={onHide}>

@@ -1,0 +1,24 @@
+.container-error-state {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  color: #999999
+}
+.container-error-state .container-icon {
+  height: 100%;
+  width: 100%;
+}
+.container-error-state .container-icon * {
+  font-size: 5rem !important;
+}
+
+.container-error-state .container-description {
+  font-size: 1rem;
+}
+
+.container-error-state .container-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
