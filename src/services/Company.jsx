@@ -7,7 +7,7 @@ import {
 const { API_URL } = { API_URL: 'https://704be563-6fd5-42b8-b183-e74d58510105.mock.pstmn.io' };
 const path = 'companies';
 
-function fromDTO(company) {
+export function fromDTO(company) {
   const phone = {
     ddi: company.Company_DDI,
     ddd: company.Company_DDD,

@@ -1,0 +1,31 @@
+.table-header {
+  display: flex;
+  justify-content: space-between;
+}
+.p-datatable-header {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1.3rem;
+}
+
+.p-panel-title {
+  display: flex;
+  justify-content: space-between;
+}
+.p-panel-header {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1.5rem;
+}
+.p-field {
+  position: relative;
+}
+.p-field small.p-invalid {
+  position: absolute;
+  left: 1rem;
+  position: absolute;
+  pointer-events: none;
+  transition-property: all;
+  transition-timing-function: ease;
+  font-size: 12px
+}

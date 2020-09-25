@@ -13,24 +13,17 @@ body {
   padding: 20px;
 }
 
-.p-dialog {
+.p-sidebar {
   max-width: 50%;
   width: 50%;
 }
 
 @media (max-width: 767px) {
   .sds-container {
-      padding-left: 10px;
-      padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
-  .p-dialog {
-    max-width: 100%;
-    width: 100%;
-  }
-}
-
-@media (max-width: 1200px) and (min-width: 767px) {
-  .p-dialog {
+  .p-sidebar {
     max-width: 75%;
     width: 75%;
   }
@@ -77,4 +70,47 @@ body {
   .p-d-print-table-cell {
     display: table-cell !important;
   }
+}
+
+.sidebar-box {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.sidebar-box .sidebar-header {
+  flex: 0 1 auto;
+}
+
+.sidebar-box .sidebar-content {
+  flex: 1 1 auto;
+  overflow: hidden auto;
+}
+// .sidebar-content {
+//   overflow-x: hidden;
+//   overflow-y: auto;
+//   height: 100%;
+// }
+.sidebar-box .sidebar-footer {
+  flex: 0 1 40px;
+  text-align: right;
+}
+
+.p-sidebar-icons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+}
+.p-sidebar-content {
+  position: absolute;
+  top: 52px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+}
+
+.sidebar-footer .p-message {
+  margin-bottom: 1rem;
 }

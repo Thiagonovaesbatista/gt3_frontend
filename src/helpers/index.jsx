@@ -49,7 +49,15 @@ export function Accumulator() {
 }
 
 export function getQueryText(query) {
+  if (!query) return '';
   const keys = Object.keys(query);
   if (keys.length === 0) return '';
   return keys.map((key) => `${key}=${encodeURI(query[key])}`);
+}
+
+let counter = 0;
+
+export function nextId(prefix) {
+  counter += 1;
+  return `${prefix}-${counter}`;
 }

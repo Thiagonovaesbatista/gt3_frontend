@@ -2,9 +2,10 @@ import React from 'react';
 import './App.scss';
 import { Switch, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import Home from './pages/Home';
 import Company from './pages/Company';
 import DocumentType from './pages/DocumentType';
+import Contract from './pages/Contract';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         </Route>
         <Route path="/document-type">
           <DocumentType />
+        </Route>
+        <Route path="/contract">
+          <Contract />
         </Route>
         <Route path="/">
           <Home />

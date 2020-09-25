@@ -133,7 +133,7 @@ function DocumentTypeDataTable({ description }) {
   );
 
   return (
-    <Panel header="Consulta de empresas">
+    <Panel header="Tipos de documentos">
       <div>
         <div className="p-fluid p-formgrid p-grid">
           <div className="p-mr-1">

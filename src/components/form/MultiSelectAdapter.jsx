@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
-import { InputMask } from 'primereact/inputmask';
+import { Dropdown } from 'primereact/dropdown';
 
-function InputMaskAdapter({
-  control, setValue, defaultValue, mask, name, rules, onComplete, className,
+function MultiSelectAdapter({
+  control, setValue, defaultValue, name, rules,
+  options, className, optionLabel, onMouseDown, dataKey,
 }) {
-  const [state, setstate] = useState(defaultValue);
+  const [state, setState] = useState(defaultValue);
   useEffect(() => {
     setValue(name, defaultValue);
   }, [setValue, defaultValue, name]);
@@ -18,47 +19,51 @@ function InputMaskAdapter({
       defaultValue={defaultValue}
       rules={rules}
       render={({ onChange }) => (
-        <InputMask
+        <Dropdown
+          optionLabel={optionLabel}
           value={state}
           name={name}
+          options={options}
+          onMouseDown={onMouseDown}
+          dataKey={dataKey}
           onChange={(e) => {
-            setstate(e.value);
-            onChange(e.value.replace(/_/g, ''));
-          }}
-          onComplete={(e) => {
+            setState(e.value);
             setValue(name, e.value, {
               shouldDirty: true,
               shouldValidate: true,
             });
-            onComplete(e);
+            onChange(e.value);
           }}
-          autoClear={false}
           type="text"
-          mask={mask}
           className={className}
-
         />
       )}
     />
   );
 }
 
-InputMaskAdapter.propTypes = {
+MultiSelectAdapter.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   control: PropTypes.any.isRequired,
   setValue: PropTypes.func.isRequired,
-  defaultValue: PropTypes.string.isRequired,
-  mask: PropTypes.string.isRequired,
+  onMouseDown: PropTypes.func,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape(),
+  ]).isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  optionLabel: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   rules: PropTypes.shape(),
-  onComplete: PropTypes.func,
   className: PropTypes.string,
+  dataKey: PropTypes.string,
 };
 
-InputMaskAdapter.defaultProps = {
+MultiSelectAdapter.defaultProps = {
   rules: undefined,
-  onComplete: () => {},
   className: '',
+  onMouseDown: () => {},
+  dataKey: 'id',
 };
 
-export default InputMaskAdapter;
+export default MultiSelectAdapter;

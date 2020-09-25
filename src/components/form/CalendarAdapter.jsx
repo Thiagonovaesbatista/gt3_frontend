@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
-import { InputMask } from 'primereact/inputmask';
+import { Calendar } from 'primereact/calendar';
 
-function InputMaskAdapter({
-  control, setValue, defaultValue, mask, name, rules, onComplete, className,
+function CalendarAdapter({
+  control, setValue, defaultValue, name, rules, className,
 }) {
-  const [state, setstate] = useState(defaultValue);
+  const [state, setState] = useState(defaultValue);
   useEffect(() => {
     setValue(name, defaultValue);
   }, [setValue, defaultValue, name]);
@@ -18,47 +18,40 @@ function InputMaskAdapter({
       defaultValue={defaultValue}
       rules={rules}
       render={({ onChange }) => (
-        <InputMask
+        <Calendar
           value={state}
           name={name}
           onChange={(e) => {
-            setstate(e.value);
-            onChange(e.value.replace(/_/g, ''));
-          }}
-          onComplete={(e) => {
+            setState(e.value);
             setValue(name, e.value, {
               shouldDirty: true,
               shouldValidate: true,
             });
-            onComplete(e);
+            onChange(e.value);
           }}
-          autoClear={false}
-          type="text"
-          mask={mask}
           className={className}
-
         />
       )}
     />
   );
 }
 
-InputMaskAdapter.propTypes = {
+CalendarAdapter.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   control: PropTypes.any.isRequired,
   setValue: PropTypes.func.isRequired,
-  defaultValue: PropTypes.string.isRequired,
-  mask: PropTypes.string.isRequired,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape(),
+  ]).isRequired,
   name: PropTypes.string.isRequired,
   rules: PropTypes.shape(),
-  onComplete: PropTypes.func,
   className: PropTypes.string,
 };
 
-InputMaskAdapter.defaultProps = {
+CalendarAdapter.defaultProps = {
   rules: undefined,
-  onComplete: () => {},
   className: '',
 };
 
-export default InputMaskAdapter;
+export default CalendarAdapter;

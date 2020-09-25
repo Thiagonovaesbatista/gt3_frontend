@@ -15,6 +15,9 @@ function Home() {
             <li>
               <Link to="/document-type">DocumentType</Link>
             </li>
+            <li>
+              <Link to="/contract">Contract</Link>
+            </li>
           </ul>
         </nav>
       </div>

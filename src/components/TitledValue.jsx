@@ -17,7 +17,10 @@ function TitledValue({ title, value }) {
 
 TitledValue.propTypes = {
   title: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]).isRequired,
 };
 
 export default TitledValue;

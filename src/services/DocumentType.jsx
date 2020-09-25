@@ -4,7 +4,7 @@ import { getQueryText } from '../helpers';
 const { API_URL } = { API_URL: 'https://704be563-6fd5-42b8-b183-e74d58510105.mock.pstmn.io' };
 const path = 'document-types';
 
-function fromDTO(documentType) {
+export function fromDTO(documentType) {
   return {
     id: documentType.ID_TypeDocument,
     description: documentType.TypeDocument_Description,

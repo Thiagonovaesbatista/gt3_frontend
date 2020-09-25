@@ -98,3 +98,35 @@ export function useCEPApi(initialCEP) {
   }, [cep, service, setDataApi]);
   return [state, setCep];
 }
+
+function useDropdownReducer(state, { data, error }) {
+  if (error) {
+    return { ...state, data: [], error };
+  }
+  return { ...state, error: null, data };
+}
+
+export function useDropdownData() {
+  const [state, dispatch] = useReducer(useDropdownReducer, {
+    errorMessage: null,
+    data: [],
+  });
+  const [{
+    data, isSuccess, isError, error,
+  }, setDataApi] = useDataApi();
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch({ data });
+    } else if (isError) {
+      if (error && error.response
+        && error.response.data && error.response.data.message) {
+        dispatch({ error: error.response.data.message });
+      } else if (error && error.message) {
+        dispatch({ error: error.message });
+      } else {
+        dispatch({ error: 'Ocorreu algum erro ao consultar' });
+      }
+    }
+  }, [isSuccess, data, isError, error]);
+  return [state, setDataApi];
+}

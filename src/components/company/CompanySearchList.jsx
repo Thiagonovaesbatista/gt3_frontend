@@ -12,10 +12,10 @@ import ErrorState from '../ErrorState';
 import LoadingState from '../LoadingState';
 import EmptyState from '../EmptyState';
 import './CompanySearchList.scss';
-import CompanyChangeModal from './CompanyChangeModal';
+import CompanyChangeModal from './CompanyChangeSidebar';
 import ConfirmDialog from '../form/ConfirmDialog';
 import { removeAllNonDigit, parseCNPJFromDto } from '../../helpers';
-import CompanyInfoModal from './CompanyInfoModal';
+import CompanyInfoSidebar from './CompanyInfoSidebar';
 
 function getElement(
   isError, isLoading, data,
@@ -142,7 +142,7 @@ function CompanySearchList({ cnpj }) {
   );
 
   return (
-    <Panel header="Consulta de empresas">
+    <Panel header="Empresas">
       <div>
         <div className="p-fluid p-formgrid p-grid">
           <div className="p-mr-1">
@@ -188,7 +188,7 @@ function CompanySearchList({ cnpj }) {
         input={deletingCompany.id}
         service={deleteCompany}
       />
-      <CompanyInfoModal
+      <CompanyInfoSidebar
         visible={infoModalVisible}
         company={infoCompany}
         onHide={onHideInfoCompany}
