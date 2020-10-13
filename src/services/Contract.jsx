@@ -1,9 +1,7 @@
 import axios from 'axios';
+import { CONTRACTS_PATH, SERVICE_API_URL } from '../constants';
 import { getQueryText } from '../helpers';
 import { fromDTO as companyFromDTO } from './Company';
-
-const { API_URL } = { API_URL: 'https://704be563-6fd5-42b8-b183-e74d58510105.mock.pstmn.io' };
-const path = 'contracts';
 
 export function fromDTO(contract) {
   return {
@@ -42,7 +40,7 @@ function toDTO(contract) {
 }
 
 export async function getContract(id) {
-  return axios.get(`${API_URL}/${path}/${id}`).then((res) => {
+  return axios.get(`${SERVICE_API_URL}/${CONTRACTS_PATH}/${id}`).then((res) => {
     let data = null;
     if (res.data) {
       data = fromDTO(res.data);
@@ -52,7 +50,7 @@ export async function getContract(id) {
 }
 
 export async function getContractQuery(query) {
-  return axios.get(`${API_URL}/${path}?${getQueryText(query)}`).then((res) => {
+  return axios.get(`${SERVICE_API_URL}/${CONTRACTS_PATH}?${getQueryText(query)}`).then((res) => {
     let data = null;
     if (res.data) {
       if (res.data.length > 0) {
@@ -66,13 +64,13 @@ export async function getContractQuery(query) {
 }
 
 export async function postContract(contract) {
-  return axios.post(`${API_URL}/${path}`, { ...toDTO(contract) });
+  return axios.post(`${SERVICE_API_URL}/${CONTRACTS_PATH}`, { ...toDTO(contract) });
 }
 
 export async function deleteContract(id) {
-  return axios.delete(`${API_URL}/${path}/${id}`);
+  return axios.delete(`${SERVICE_API_URL}/${CONTRACTS_PATH}/${id}`);
 }
 
 export async function putContract(id, contract) {
-  return axios.put(`${API_URL}/${path}/${id}`, { ...toDTO(contract) });
+  return axios.put(`${SERVICE_API_URL}/${CONTRACTS_PATH}/${id}`, { ...toDTO(contract) });
 }

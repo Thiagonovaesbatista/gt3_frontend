@@ -1,25 +1,23 @@
 import axios from 'axios';
+import { DOCUMENT_TYPES_PATH, SERVICE_API_URL } from '../constants';
 import { getQueryText } from '../helpers';
-
-const { API_URL } = { API_URL: 'https://704be563-6fd5-42b8-b183-e74d58510105.mock.pstmn.io' };
-const path = 'document-types';
 
 export function fromDTO(documentType) {
   return {
-    id: documentType.ID_TypeDocument,
-    description: documentType.TypeDocument_Description,
+    id: documentType.id_typedocument,
+    description: documentType.TypeDocument_Descriptyon,
   };
 }
 
 function toDTO(documentType) {
   return {
-    ID_TypeDocument: documentType.id,
-    TypeDocument_Description: documentType.description,
+    id_typedocument: documentType.id,
+    TypeDocument_Descriptyon: documentType.description,
   };
 }
 
 export async function getDocumentType(id) {
-  return axios.get(`${API_URL}/${path}/${id}`).then((res) => {
+  return axios.get(`${SERVICE_API_URL}/${DOCUMENT_TYPES_PATH}/${id}`).then((res) => {
     let data = null;
     if (res.data) {
       data = fromDTO(res.data);
@@ -29,7 +27,7 @@ export async function getDocumentType(id) {
 }
 
 export async function getDocumentTypeQuery(query) {
-  return axios.get(`${API_URL}/${path}?${getQueryText(query)}`).then((res) => {
+  return axios.get(`${SERVICE_API_URL}/${DOCUMENT_TYPES_PATH}?${getQueryText(query)}`).then((res) => {
     let data = null;
     if (res.data) {
       if (res.data.length > 0) {
@@ -43,13 +41,13 @@ export async function getDocumentTypeQuery(query) {
 }
 
 export async function postDocumentType(documentType) {
-  return axios.post(`${API_URL}/${path}`, toDTO(documentType));
+  return axios.post(`${SERVICE_API_URL}/${DOCUMENT_TYPES_PATH}`, toDTO(documentType));
 }
 
 export async function deleteDocumentType(id) {
-  return axios.delete(`${API_URL}/${path}/${id}`);
+  return axios.delete(`${SERVICE_API_URL}/${DOCUMENT_TYPES_PATH}/${id}`);
 }
 
 export async function putDocumentType(id, documentType) {
-  return axios.put(`${API_URL}/${path}/${id}`, toDTO(documentType));
+  return axios.put(`${SERVICE_API_URL}/${DOCUMENT_TYPES_PATH}/${id}`, toDTO(documentType));
 }

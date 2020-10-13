@@ -1,54 +1,52 @@
 import axios from 'axios';
+import { COMPANIES_PATH, SERVICE_API_URL } from '../constants';
 import {
   parsePhoneToDTO, parsePhoneFromDTO, getQueryText,
   parseCNPJFromDto, parseCEPFromDto, removeAllNonDigit,
 } from '../helpers';
 
-const { API_URL } = { API_URL: 'https://704be563-6fd5-42b8-b183-e74d58510105.mock.pstmn.io' };
-const path = 'companies';
-
 export function fromDTO(company) {
   const phone = {
-    ddi: company.Company_DDI,
-    ddd: company.Company_DDD,
-    phone: company.Company_Phone,
+    ddi: company.company_ddi,
+    ddd: company.company_ddd,
+    phone: company.company_phone,
   };
   return {
-    id: company.ID_Company,
-    cnpj: parseCNPJFromDto(company.Company_CGC),
-    name: company.Company_Name,
-    cep: parseCEPFromDto(company.Company_CEP),
-    uf: company.Company_UF,
-    city: company.Company_City,
-    district: company.Company_District,
-    address: company.Company_Address,
-    addressComplement: company.Company_Ad_Complemento,
+    id: company.id_Company,
+    cnpj: parseCNPJFromDto(company.company_cgc),
+    name: company.company_name,
+    cep: parseCEPFromDto(company.company_cep),
+    uf: company.company_uf,
+    city: company.company_city,
+    district: company.company_district,
+    address: company.company_adress,
+    addressComplement: company.company_ad_complemento,
     phone: parsePhoneFromDTO(phone),
-    notes: company.Company_Notes,
+    notes: company.company_notes,
   };
 }
 
 function toDTO(company) {
   const { ddi, ddd, phone } = parsePhoneToDTO(company.phone);
   return {
-    ID_Company: company.id,
-    Company_CGC: removeAllNonDigit(company.cnpj),
-    Company_Name: company.name,
-    Company_CEP: removeAllNonDigit(company.cep),
-    Company_UF: company.uf,
-    Company_City: company.city,
-    Company_District: company.district,
-    Company_Address: company.address,
-    Company_Ad_Complemento: company.addressComplement,
-    Company_DDI: ddi,
-    Company_DDD: ddd,
-    Company_Phone: phone,
-    Company_Notes: company.Company_Notes,
+    id_Company: company.id,
+    company_cgc: removeAllNonDigit(company.cnpj),
+    company_name: company.name,
+    company_cep: removeAllNonDigit(company.cep),
+    company_uf: company.uf,
+    company_city: company.city,
+    company_district: company.district,
+    company_adress: company.address,
+    company_ad_complemento: company.addressComplement,
+    company_ddi: ddi,
+    company_ddd: ddd,
+    company_phone: phone,
+    company_notes: company.notes,
   };
 }
 
 export async function getCompany(id) {
-  return axios.get(`${API_URL}/${path}/${id}`).then((res) => {
+  return axios.get(`${SERVICE_API_URL}/${COMPANIES_PATH}/${id}`).then((res) => {
     let data = null;
     if (res.data) {
       data = fromDTO(res.data);
@@ -58,7 +56,7 @@ export async function getCompany(id) {
 }
 
 export async function getCompanyQuery(query) {
-  return axios.get(`${API_URL}/${path}?${getQueryText(query)}`).then((res) => {
+  return axios.get(`${SERVICE_API_URL}/${COMPANIES_PATH}?${getQueryText(query)}`).then((res) => {
     let data = null;
     if (res.data) {
       if (res.data.length > 0) {
@@ -72,13 +70,13 @@ export async function getCompanyQuery(query) {
 }
 
 export async function postCompany(company) {
-  return axios.post(`${API_URL}/${path}`, toDTO(company));
+  return axios.post(`${SERVICE_API_URL}/${COMPANIES_PATH}`, toDTO(company));
 }
 
 export async function deleteCompany(id) {
-  return axios.delete(`${API_URL}/${path}/${id}`);
+  return axios.delete(`${SERVICE_API_URL}/${COMPANIES_PATH}/${id}`);
 }
 
 export async function putCompany(id, company) {
-  return axios.put(`${API_URL}/${path}/${id}`, toDTO(company));
+  return axios.put(`${SERVICE_API_URL}/${COMPANIES_PATH}/${id}`, toDTO(company));
 }
